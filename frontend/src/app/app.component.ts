@@ -9,7 +9,7 @@ import { HobbyService } from './hobby.service';
   imports: [RouterOutlet, HttpClientModule],
   providers: [HobbyService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
   title = 'frontend';
