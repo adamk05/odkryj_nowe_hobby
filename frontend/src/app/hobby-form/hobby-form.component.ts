@@ -1,13 +1,16 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HobbyForm } from '../hobby-form.model';
 import { HobbyService } from '../hobby.service';
+import { fadeAnimation } from '../animations';
 
 @Component({
   selector: 'app-hobby-form',
   standalone: true,
   imports: [FormsModule, CommonModule],
+  animations: [fadeAnimation],
   templateUrl: './hobby-form.component.html',
   styleUrl: './hobby-form.component.scss'
 })
