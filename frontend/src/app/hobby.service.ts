@@ -15,10 +15,6 @@ export class HobbyService {
 
   constructor(private httpClient: HttpClient) { }
 
-  test(): Observable<any> {
-    return this.httpClient.get<any>('http://localhost:8080/api/test');
-  }
-
   getRecommendations(hobby: HobbyForm): Observable<Hobby[]> {
     return this.httpClient.post<Hobby[]>(this.BASE_URL + '/recommendations', hobby);
   }
