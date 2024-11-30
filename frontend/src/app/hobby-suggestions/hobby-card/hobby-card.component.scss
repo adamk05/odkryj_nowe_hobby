@@ -1,3 +1,4 @@
+@import url('../../../styles.scss');
 // .card-holder {
 //     height: 10rem;
 //     transition: height 0.3s ease, opacity 0.3s ease;
@@ -27,4 +28,17 @@
     -webkit-line-clamp: 2; 
     height: 3rem;
     overflow: hidden; 
+}
+.card {
+    background-color: var(--card-bg);
+    color: var(--card-font);
+}
+
+.btn-primary {
+    background: var(--button-bg);
+    border: 1px solid var(--btn-card-border-color);
+}
+
+.btn-primary:hover {
+    background: var(--button-hover-bg);
 }

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HobbyForm } from '../hobby-form.model';
 import { HobbyService } from '../hobby.service';
 import { fadeAnimation } from '../animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hobby-form',
@@ -18,8 +19,9 @@ export class HobbyFormComponent {
 
   hobby: HobbyForm = new HobbyForm();
   step: number = -1;
+  loading = false;
 
-  constructor(private hobbyService: HobbyService) { }
+  constructor(private hobbyService: HobbyService, private router: Router) { }
 
   handleStart(): void {
     if(this.step === -1) {
@@ -28,10 +30,13 @@ export class HobbyFormComponent {
   }
 
   proceed(): void {
+    this.loading = true;
     this.hobbyService.getRecommendations(this.hobby).subscribe({
       next: (value) => {
         console.log(value);
         this.hobbyService.changeHobbies(value);
+        this.loading = false;
+        this.router.navigate(['/suggestions']);
       }
     });
   }

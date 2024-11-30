@@ -6,3 +6,13 @@
 .dialog-image {
     max-height: 25rem;
 }
+
+:host::ng-deep .p-dialog-header {
+    background-color: var(--card-bg);
+    color: var(--card-font);
+}
+
+:host::ng-deep .p-dialog-content {
+    background-color: var(--card-bg);
+    color: var(--card-font);
+}

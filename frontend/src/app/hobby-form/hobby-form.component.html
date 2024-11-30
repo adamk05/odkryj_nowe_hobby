@@ -1,4 +1,4 @@
-<div class="wrapper container" (click)="handleStart()">
+<div *ngIf="!loading" class="wrapper container" (click)="handleStart()">
     <div class="start-screen" *ngIf="step === -1" @fadeAnimation>
         <span>Kliknij, aby poznać siebie na nowo</span>
     </div>
@@ -72,3 +72,5 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="loading" class="loader"></div>

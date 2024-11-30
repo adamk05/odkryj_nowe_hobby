@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HobbyService } from './hobby.service';
 import { HobbyFormComponent } from './hobby-form/hobby-form.component';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  constructor(private hobbyService: HobbyService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.applyStoredTheme();
