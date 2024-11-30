@@ -32,7 +32,6 @@ public class GeminiService {
         final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-//        headers.set("Authorization", "Bearer " + apiKey);
         headers.set("Content-Type", "application/json");
 
         Map<String, String> textMap = new HashMap<>();
@@ -53,8 +52,6 @@ public class GeminiService {
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(topLevelMap, headers);
 
         ResponseEntity<String> response = restTemplate.exchange(GEMINI_URL, HttpMethod.POST, entity, String.class);
-
-        System.out.println(response.getBody());
 
         String jsonString = response.getBody();
 
