@@ -1,5 +1,9 @@
 package chlopaki.z.frontu.hobby.services;
 
+import chlopaki.z.frontu.hobby.domain.Hobby;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,9 +26,9 @@ public class GeminiService {
     @Value("${google.gemini.api-key}")
     private String apiKey;
 
-    private String hobby1;
+    private List<Hobby> hobbies = new ArrayList<Hobby>();
 
-    public String generateContent(String prompt) {
+    public List<Hobby> generateContent(String prompt) throws JsonProcessingException {
         final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -34,19 +38,15 @@ public class GeminiService {
         Map<String, String> textMap = new HashMap<>();
         textMap.put("text", prompt);
 
-        // Wrap the "text" map in a list (parts array)
         List<Map<String, String>> partsList = new ArrayList<>();
         partsList.add(textMap);
 
-        // Create the "parts" map
         Map<String, Object> partsMap = new HashMap<>();
         partsMap.put("parts", partsList);
 
-        // Wrap the "parts" map in a list (contents array)
         List<Map<String, Object>> contentsList = new ArrayList<>();
         contentsList.add(partsMap);
 
-        // Create the top-level map
         Map<String, Object> topLevelMap = new HashMap<>();
         topLevelMap.put("contents", contentsList);
 
@@ -54,18 +54,37 @@ public class GeminiService {
 
         ResponseEntity<String> response = restTemplate.exchange(GEMINI_URL, HttpMethod.POST, entity, String.class);
 
-        /*String jasonString = response.getBody();
+        System.out.println(response.getBody());
 
-        JSONArray jsonArray = new JSONArray(jasonString);
+        String jsonString = response.getBody();
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        JsonNode rootNode = mapper.readTree(jsonString);
+
+        String text = rootNode
+                .path("candidates")
+                .get(0)
+                .path("content")
+                .path("parts")
+                .get(0)
+                .path("text")
+                .asText();
+
+        String cleanedText = text.replaceFirst("^```json\\n", "").replaceFirst("\\n```$", "");
+
+        System.out.println(cleanedText);
+
+        JSONArray jsonArray = new JSONArray(cleanedText);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject hobbyObject = jsonArray.getJSONObject(i);
 
-            if (hobbyObject.has("hobby1") && hobbyObject.has("opis hobby1")) {
-                hobby1 = hobbyObject.getString("hobb1");
+            if (hobbyObject.has("hobby") && hobbyObject.has("opis")) {
+                hobbies.add(new Hobby(hobbyObject.getString("hobby"), hobbyObject.getString("opis")));
             }
-        }*/
+        }
 
-        return response.getBody();
+        return hobbies;
     }
 }

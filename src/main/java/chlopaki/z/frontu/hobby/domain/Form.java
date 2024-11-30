@@ -2,7 +2,7 @@ package chlopaki.z.frontu.hobby.domain;
 
 public class Form {
 
-    boolean time;
+    int time;
     boolean riskyActivities;
     boolean isIndyvidual;
     boolean isSpontanic;
@@ -15,11 +15,11 @@ public class Form {
 
     public Form() {}
 
-    public boolean isTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(boolean time) {
+    public void setTime(int time) {
         this.time = time;
     }
 

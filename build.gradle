@@ -25,6 +25,7 @@ dependencies {
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	implementation 'com.google.api-client:google-api-client:1.34.0'
 	implementation 'org.json:json:20210307'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 
 }
 
