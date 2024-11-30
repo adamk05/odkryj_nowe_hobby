@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HobbyForm } from '../hobby-form.model';
+import { HobbyService } from '../hobby.service';
 
 @Component({
   selector: 'app-hobby-form',
@@ -13,17 +14,16 @@ import { HobbyForm } from '../hobby-form.model';
 export class HobbyFormComponent {
 
   hobby: HobbyForm = new HobbyForm();
-  timeValue: number = 0;
   step: number = 0;
 
-  constructor() { }
+  constructor(private hobbyService: HobbyService) { }
 
   proceed(): void {
-    console.log('dupa');
-  }
-
-  getTimeValue(): void {
-    
+    this.hobbyService.getRecommendations(this.hobby).subscribe({
+      next: (value) => {
+        console.log(value);
+      }
+    })
   }
 
   stepAhead(): void {
@@ -72,7 +72,7 @@ export class HobbyFormComponent {
 
   likesNature(): void {
     this.hobby.likesNature = true;
-    this.stepAhead();
+    this.proceed();
   }
 
 
