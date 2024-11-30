@@ -4,12 +4,13 @@ import chlopaki.z.frontu.hobby.domain.Form;
 import chlopaki.z.frontu.hobby.domain.Hobby;
 import chlopaki.z.frontu.hobby.services.GeminiService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Kontroler odpowiadający za komunikację z API Gemini
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
@@ -17,10 +18,20 @@ public class GeminiAIController {
 
     private final GeminiService geminiService;
 
+    /**
+     * Konstruktor ustawiający serwis Gemini
+     * @param geminiService serwis Gemini
+     */
     public GeminiAIController(GeminiService geminiService) {
         this.geminiService = geminiService;
     }
 
+    /**
+     * Metoda odpowiadająca za tworzenie zapytania do Gemini i zwracanie odpowiedzi
+     * @param form obiekt odpowiedzi z formularza
+     * @return zwraca listę obiektów Hobby
+     * @throws JsonProcessingException rzuca wyjątek przy błędnym parsowaniu na JSON
+     */
     @PostMapping("/recommendations")
     public List<Hobby> generate(@RequestBody Form form) throws JsonProcessingException {
         String question = "Zaproponuj 3 hobby dla aktywnej osoby w postaci tylko JSON (daj tylko JSON) tak jak tu, tylko z jedną kategorią (w miarę różne kategorie): [{hobby1, opis hobby1, kategoria hobby1}, {hobby2, opis hobby2, kategoria hobby2}, {hobby3, opis hobby3, kategoria hobby3}], gdy użytkownik";
