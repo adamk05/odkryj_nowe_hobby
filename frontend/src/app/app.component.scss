@@ -1,5 +1,6 @@
+@import url('../styles.scss');
 .wrapper {
-    background: linear-gradient(0deg, rgba(0,127,255,0.7) 0%, rgba(124,185,232,1) 33%, rgba(15,248,255,1) 100%);
+    background: var(--main-bg);
 }
 
 .navbar {
@@ -11,6 +12,25 @@
 
 .title {
     font-size: calc(1em + 2.5vh + 2.5vw);
+    font-weight: bold;
+    font-family: 'lemonmilk', sans-serif;
+    text-shadow: var(--title-text-shadow);
+}
+
+.theme {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.not-enabled {
+    opacity: 0.5;
+}
+
+.slash {
+    margin: 0 5px;
 }
 
 .main {

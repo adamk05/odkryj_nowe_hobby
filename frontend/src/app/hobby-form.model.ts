@@ -1,5 +1,5 @@
 export class HobbyForm {
-    time: number = 0;
+    time: number = 1;
     riskyActivities: boolean = false;
     isIndividualist: boolean = false;
     isSpontanic: boolean = false;

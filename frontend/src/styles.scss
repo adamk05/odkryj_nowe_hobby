@@ -2,3 +2,26 @@
 body {
     color: white;
 }
+
+@font-face {
+    font-family: 'lemonmilk';
+    src: url('/assets/fonts/LEMONMILK-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --main-bg: linear-gradient(0deg, rgba(74, 102, 230, 1) 0%, rgba(82, 113, 255, 1) 33%, rgba(99, 127, 255, 1) 100%);
+    --button-bg: #0000BF;
+    --button-hover-bg: #000080;
+    --title-text-shadow: #000 2px 2px 6px, #000 -2px -2px 6px;
+    --text-shadow: #000080 1px 1px 3px, #000080 -1px -1px 3px;
+}
+
+.dark-theme {
+    --main-bg: #161616;
+    --button-bg: #404040;
+    --button-hover-bg: #606060;
+    --title-text-shadow: none;
+    --text-shadow: none;
+  }

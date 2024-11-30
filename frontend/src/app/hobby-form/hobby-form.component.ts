@@ -17,9 +17,15 @@ import { fadeAnimation } from '../animations';
 export class HobbyFormComponent {
 
   hobby: HobbyForm = new HobbyForm();
-  step: number = 0;
+  step: number = -1;
 
   constructor(private hobbyService: HobbyService) { }
+
+  handleStart(): void {
+    if(this.step === -1) {
+      this.stepAhead();
+    }
+  }
 
   proceed(): void {
     this.hobbyService.getRecommendations(this.hobby).subscribe({
@@ -31,7 +37,12 @@ export class HobbyFormComponent {
   }
 
   stepAhead(): void {
-    this.step++;
+    const stepCopy = this.step;
+    this.step = -2;
+    setTimeout(() => {
+      this.step = stepCopy + 1;
+    }, 500)
+    
   }
 
   riskyActivities(): void {

@@ -1,71 +1,74 @@
-<div class="wrapper container">
+<div class="wrapper container" (click)="handleStart()">
+    <div class="start-screen" *ngIf="step === -1" @fadeAnimation>
+        <span>Kliknij, aby poznać siebie na nowo</span>
+    </div>
     <div class="form-group" *ngIf="step === 0" @fadeAnimation>
         <span class="question">Ile godzin tygodniowo masz na hobby?</span>
-        <input [(ngModel)]="hobby.time" min="0" max="80" type="range" class="form-range">
+        <input [(ngModel)]="hobby.time" min="1" max="80" type="range" class="form-range">
         <span class="time-caption">{{hobby.time}}h</span>
-        <button class="btn btn-primary big-btn proceed-btn" (click)="stepAhead()">Dalej</button>
+        <button class="btn  big-btn proceed-btn" (click)="stepAhead()">Dalej</button>
     </div>
     <div class="form-group" *ngIf="step === 1" @fadeAnimation>
         <span class="question">Lubisz ryzykowne aktywności?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="riskyActivities()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="riskyActivities()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 2" @fadeAnimation>
         <span class="question">Jesteś indywidualistą?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="isIndividualist()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="isIndividualist()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 3" @fadeAnimation>
-        <span class="question">Wolisz planować wszystko z wyprzedzeniem czy działasz spontanicznie?</span>
+        <span class="question">Lubisz działać spontanicznie?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="isSpontanic()">Spontanicznie</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">Planuję</div>
+            <div class="btn  big-btn" (click)="isSpontanic()">Tak</div>
+            <div class="btn  big-btn" (click)="stepAhead()">Nie</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 4" @fadeAnimation>
         <span class="question">Czy lubisz spędzać czas na świeżym powietrzu?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="freshAirActivities()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn big-btn" (click)="freshAirActivities()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 5" @fadeAnimation>
         <span class="question">Czy interesują cię aktywności wymagające kreatywności?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="isCreative()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="isCreative()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 6" @fadeAnimation>
         <span class="question">Czy lubisz czynności manualne?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="manualActivities()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="manualActivities()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 7" @fadeAnimation>
         <span class="question">Czy ciekawią Cię tematy techniczne i naukowe?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="likesScience()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="likesScience()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 8" @fadeAnimation>
         <span class="question">Czy interesujesz się historią?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="likesHistory()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="likesHistory()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
     <div class="form-group" *ngIf="step === 9" @fadeAnimation>
         <span class="question">Czy lubisz obcować z naturą?</span>
         <div class="buttons-wrapper">
-            <div class="btn btn-primary big-btn" (click)="likesNature()">TAK</div>
-            <div class="btn btn-primary big-btn" (click)="stepAhead()">NIE</div>
+            <div class="btn  big-btn" (click)="likesNature()">TAK</div>
+            <div class="btn  big-btn" (click)="stepAhead()">NIE</div>
         </div>
     </div>
 </div>

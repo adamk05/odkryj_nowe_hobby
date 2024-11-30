@@ -1,6 +1,18 @@
 <div class="wrapper vh-100">
     <div class="navbar">
-        <span class="title">OKDYRJ SWOJE HOBBY</span>
+        <span class="title">ODKRYJ SWOJE HOBBY</span>
+        <div class="theme" (click)="switchTheme()">
+            <div [class]="isDarkThemeEnabled() ? 'not-enabled' : ''">
+                <span>Jasny </span>
+                <fa-icon [icon]="faSun"></fa-icon>
+            </div>
+            <span class="slash">/</span>
+            <div [class]="isDarkThemeEnabled() ? '' : 'not-enabled'">
+                <span>Ciemny </span>
+                <fa-icon [icon]="faMoon"></fa-icon>
+            </div>
+        </div>
+        
     </div>
     <div class="main">
         <app-hobby-form></app-hobby-form>
