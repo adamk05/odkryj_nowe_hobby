@@ -19,15 +19,109 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Serwis odpowiadający za komunikację z API Gemini
+ */
 @Service
 public class GeminiService {
 
+    private String categories[] = {
+            "Sporty ekstremalne",
+            "Sporty wodne",
+            "Sporty siłowe",
+            "Aktywności na świeżym powietrzu",
+            "Sporty wytrzymałościowe",
+            "Turystyka",
+            "Aktywność fizyczna",
+            "Sporty zespołowe",
+            "Sporty wędkarskie i wędkarstwo",
+            "Sporty zimowe",
+            "Sporty motorowe",
+            "Sporty powietrzne",
+            "Sporty jeździeckie",
+            "Sporty strzeleckie",
+            "Technologia i robotyka",
+            "Modelarstwo",
+            "Sztuka i rzemiosło",
+            "Sporty walki",
+            "Sporty indywidualne",
+            "Aktywności kreatywne",
+            "Aktywności naukowe",
+            "Projektowanie",
+            "Aktywności przyrodnicze",
+            "Rekonstrukcje historyczne"
+    };
+
+    /**
+     * Metoda uzupełniająca pytanie kategoriami
+     * @param question pytanie do uzupełnienia
+     * @return zwraca uzupełnione pytanie
+     */
+    public String completeQuestion(String question) {
+
+        String prompt = question;
+
+        for (int i = 0; i < categories.length; i++) {
+            if (i == 0) {
+                prompt += categories[i];
+                continue;
+            }
+            prompt += ", " + categories[i];
+            if (i == categories.length - 1) prompt += ", " + categories[i] + ": ";
+        }
+
+        return prompt;
+    }
+
+    // Klucz API do Gemini
     @Value("${google.gemini.api-key}")
     private String apiKey;
 
-    private List<Hobby> hobbies = new ArrayList<Hobby>();
+    /**
+     * Domyślny konstruktor
+     */
+    public GeminiService() {}
 
+    /**
+     * Pozyskiwanie obiektów Hobby z odpowiedzi z API Gemini
+     * @param prompt zapytanie do Gemini
+     * @return zwraca listę obiektów Hobby
+     * @throws JsonProcessingException rzuca wyjątek przy błędnym parsowaniu na JSON
+     */
     public List<Hobby> generateContent(String prompt) throws JsonProcessingException {
+
+        List<Hobby> hobbies = new ArrayList<Hobby>();
+
+        JSONArray jsonArray = askGemini(prompt);
+
+        // Pozyskiwanie obiektów Hobby z odpowiedzi
+        for (int i = 0; i < jsonArray.length(); i++) {
+
+            JSONObject hobbyObject = jsonArray.getJSONObject(i);
+
+            if (hobbyObject.has("hobby1") && hobbyObject.has("opis hobby1") && hobbyObject.has("kategoria hobby1")) {
+                hobbies.add(new Hobby(hobbyObject.getString("hobby1"), hobbyObject.getString("opis hobby1"), hobbyObject.getString("kategoria hobby1")));
+            }
+
+            if (hobbyObject.has("hobby2") && hobbyObject.has("opis hobby2") && hobbyObject.has("kategoria hobby2")) {
+                hobbies.add(new Hobby(hobbyObject.getString("hobby2"), hobbyObject.getString("opis hobby2"), hobbyObject.getString("kategoria hobby2")));
+            }
+
+            if (hobbyObject.has("hobby3") && hobbyObject.has("opis hobby3") && hobbyObject.has("kategoria hobby3")) {
+                hobbies.add(new Hobby(hobbyObject.getString("hobby3"), hobbyObject.getString("opis hobby3"), hobbyObject.getString("kategoria hobby3")));
+            }
+        }
+
+        return hobbies;
+    }
+
+    /**
+     * Wysyłanie zapytania do Gemini
+     * @param prompt Początek zapytania
+     * @return zwraca obiekt JSONArray
+     * @throws JsonProcessingException rzuca wyjątek przy błędnym parsowaniu na JSON
+     */
+    private JSONArray askGemini(String prompt) throws JsonProcessingException {
         final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -58,6 +152,7 @@ public class GeminiService {
 
         JsonNode rootNode = mapper.readTree(jsonString);
 
+        // Pozyskanie wartości "text" z drzewka JSON
         String text = rootNode
                 .path("candidates")
                 .get(0)
@@ -67,18 +162,15 @@ public class GeminiService {
                 .path("text")
                 .asText();
 
-        String cleanedText = text.replaceFirst("^```json\\n", "").replaceFirst("\\n```$", "");
+        // Usunięcie "```json" z początku
+        String cleanedJson = text.replaceFirst("^```json\\n", "");
 
-        JSONArray jsonArray = new JSONArray(cleanedText);
+        // Usunięcie "```" z końca
+        cleanedJson = cleanedJson.replaceFirst("\\n```$", "");
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject hobbyObject = jsonArray.getJSONObject(i);
+        // Parsowanie na JSON
+        JSONArray jsonArray = new JSONArray(cleanedJson);
 
-            if (hobbyObject.has("hobby") && hobbyObject.has("opis") && hobbyObject.has("kategoria")) {
-                hobbies.add(new Hobby(hobbyObject.getString("hobby"), hobbyObject.getString("opis"), hobbyObject.getString("kategoria")));
-            }
-        }
-
-        return hobbies;
+        return jsonArray;
     }
 }
