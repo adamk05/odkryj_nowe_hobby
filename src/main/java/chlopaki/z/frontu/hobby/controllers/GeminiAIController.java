@@ -4,8 +4,6 @@ import chlopaki.z.frontu.hobby.domain.Form;
 import chlopaki.z.frontu.hobby.domain.Hobby;
 import chlopaki.z.frontu.hobby.services.GeminiService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
