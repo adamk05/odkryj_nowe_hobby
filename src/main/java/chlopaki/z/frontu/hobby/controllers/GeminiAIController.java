@@ -23,7 +23,7 @@ public class GeminiAIController {
 
     @PostMapping("/recommendations")
     public List<Hobby> generate(@RequestBody Form form) throws JsonProcessingException {
-        String question = "Zaproponuj 3 hobby dla aktywnej osoby w postaci tylko JSON (daj tylko JSON) tak jak tu: [{hobby1, opis hobby1}, {hobby2, opis hobby2}, {hobby3, opis hobby3}], gdy użytkownik";
+        String question = "Zaproponuj 3 hobby dla aktywnej osoby w postaci tylko JSON (daj tylko JSON) tak jak tu: [{hobby1, opis hobby1, kategoria hobby1}, {hobby2, opis hobby2, kategoria hobby2}, {hobby3, opis hobby3, kategoria hobby3}], gdy użytkownik";
 
         question += " ma " + form.getTime() + " godzin wolnego czasu w tygodniu";
         if (form.isRiskyActivities()) question += ", lubi ryzykowne aktywności";
@@ -37,8 +37,6 @@ public class GeminiAIController {
         if (form.isLikesScience()) question += ", lubi naukę";
         if (form.isLikeHistory()) question += ", lubi historię";
         if (form.isLikesNature()) question += ", lubi obcować z naturą.";
-
-        System.out.println(question);
 
         List<Hobby> hobbies = geminiService.generateContent(question);
 

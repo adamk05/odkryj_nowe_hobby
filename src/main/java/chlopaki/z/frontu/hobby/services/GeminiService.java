@@ -73,15 +73,13 @@ public class GeminiService {
 
         String cleanedText = text.replaceFirst("^```json\\n", "").replaceFirst("\\n```$", "");
 
-        System.out.println(cleanedText);
-
         JSONArray jsonArray = new JSONArray(cleanedText);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject hobbyObject = jsonArray.getJSONObject(i);
 
-            if (hobbyObject.has("hobby") && hobbyObject.has("opis")) {
-                hobbies.add(new Hobby(hobbyObject.getString("hobby"), hobbyObject.getString("opis")));
+            if (hobbyObject.has("hobby") && hobbyObject.has("opis") && hobbyObject.has("kategoria")) {
+                hobbies.add(new Hobby(hobbyObject.getString("hobby"), hobbyObject.getString("opis"), hobbyObject.getString("kategoria")));
             }
         }
 

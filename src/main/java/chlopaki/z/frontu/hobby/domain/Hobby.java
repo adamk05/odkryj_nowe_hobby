@@ -4,10 +4,12 @@ public class Hobby {
 
     private String name;
     private String description;
+    private String category;
 
-    public Hobby(String name, String description) {
+    public Hobby(String name, String description, String category) {
         this.name = name;
         this.description = description;
+        this.category = category;
     }
 
     public String getName() {
@@ -24,5 +26,13 @@ public class Hobby {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
