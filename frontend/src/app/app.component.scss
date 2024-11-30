@@ -1,0 +1,18 @@
+.wrapper {
+    background: linear-gradient(0deg, rgba(0,127,255,0.7) 0%, rgba(124,185,232,1) 33%, rgba(15,248,255,1) 100%);
+}
+
+.navbar {
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.title {
+    font-size: calc(1em + 2vh + 2vw);
+}
+
+.main {
+    height: 85vh;
+}
