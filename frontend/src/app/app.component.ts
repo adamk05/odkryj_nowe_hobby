@@ -12,17 +12,9 @@ import { HobbyFormComponent } from './hobby-form/hobby-form.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'frontend';
 
   constructor(private hobbyService: HobbyService) { }
-
-  ngOnInit(): void {
-    this.hobbyService.test().subscribe({
-      next: (value) => {
-        console.log(value);
-      }
-    })
-  }
 
 }
