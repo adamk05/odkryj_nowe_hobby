@@ -22,6 +22,10 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.google.api-client:google-api-client:1.34.0'
+	implementation 'org.json:json:20210307'
+
 }
 
 tasks.named('test') {

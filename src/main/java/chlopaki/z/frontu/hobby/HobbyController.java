@@ -20,4 +20,13 @@ public class HobbyController {
         map.put("test", "test");
         return map;       
     }
+
+    @GetMapping("/hobby")
+    public Map<String, String> hobby() {
+        Map<String, String> map = new HashMap<>();
+        map.put("hobby", "hobby");
+        return map;
+    }
+
+
 }
