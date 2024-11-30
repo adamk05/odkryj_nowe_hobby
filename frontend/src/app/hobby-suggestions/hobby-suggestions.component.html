@@ -1,1 +1,43 @@
-<p>hobby-suggestions works!</p>
+<div class="w-100 h-100 container">
+    <div class=" row h-100 align-items-center">
+        <div class="col-4">
+            <app-hobby-card 
+                [hobby]="hobbies[0]" 
+                [imageSrc]="imagePaths[0]"
+                (onButtonClick)="onCardButtonClick(0)"
+            ></app-hobby-card>
+        </div>
+        <div class="col-4">
+            <app-hobby-card 
+                [hobby]="hobbies[1]" 
+                [imageSrc]="imagePaths[1]"
+                (onButtonClick)="onCardButtonClick(1)"
+            ></app-hobby-card>
+        </div>
+        <div class="col-4">
+            <app-hobby-card 
+                [hobby]="hobbies[2]"
+                [imageSrc]="imagePaths[2]"
+                (onButtonClick)="onCardButtonClick(2)"
+            ></app-hobby-card>
+        </div>
+    </div>
+    <p-dialog 
+        header="Dodatkowe informacje" 
+        [modal]="true"
+        [(visible)]="isDialogVisible" 
+        (onHide)="isDialogVisible = false; selectedHobbyIndex = undefined"
+        [style]="{ width: '50rem' }" 
+    >
+        <div class="container dialog-content-holder">
+        @if (selectedHobbyIndex !== undefined) {
+            <img class="row dialog-image mx-auto p-3 rounded-5"
+                [src]="imagePaths[selectedHobbyIndex]" 
+                [alt]="imageAlts[selectedHobbyIndex]" 
+            />
+            <h3 class="w-100 text-center mb-3">{{hobbies[selectedHobbyIndex].name}}</h3>
+            <p class="pb-2 text-center ">{{hobbies[selectedHobbyIndex].description}}</p>
+        }
+        </div>
+</p-dialog>
+</div>

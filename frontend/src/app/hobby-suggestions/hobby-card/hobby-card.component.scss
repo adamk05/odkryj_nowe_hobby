@@ -1,0 +1,30 @@
+// .card-holder {
+//     height: 10rem;
+//     transition: height 0.3s ease, opacity 0.3s ease;
+// }
+// .card-holder:hover {
+//     height: 20rem;
+//     opacity: 1;
+// }
+.hobby-image {
+    max-height:17rem;
+    max-width: 90%;
+    object-fit:contain;
+}
+.hobby-image-holder {
+    height: 18rem;
+}
+.card-paragraph {
+    text-align: center;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 2; 
+    overflow: hidden; 
+}
+.title {
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 2; 
+    height: 3rem;
+    overflow: hidden; 
+}
