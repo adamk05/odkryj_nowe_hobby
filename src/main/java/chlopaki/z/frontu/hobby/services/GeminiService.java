@@ -25,10 +25,6 @@ import java.util.Map;
 @Service
 public class GeminiService {
 
-    //TODO zrobić czyszczenie tablicy z obiektami hobby
-
-//    private String question = "Skatogeryzuj tę kategorię do podanych tutaj i podaj to TYLKO w postaci JSON [{kategoria}] i dopasuj TYLKO do jednej kategorii: ";
-
     private String categories[] = {
             "Sporty ekstremalne",
             "Sporty wodne",
