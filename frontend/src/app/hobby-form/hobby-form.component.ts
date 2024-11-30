@@ -22,8 +22,9 @@ export class HobbyFormComponent {
     this.hobbyService.getRecommendations(this.hobby).subscribe({
       next: (value) => {
         console.log(value);
+        this.hobbyService.changeHobbies(value);
       }
-    })
+    });
   }
 
   stepAhead(): void {
