@@ -18,7 +18,7 @@ public class Form {
     boolean likesNature;
 
     /**
-     * Konstruktor
+     * Konstruktor domyślny
      */
     public Form() {}
 
