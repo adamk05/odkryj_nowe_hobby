@@ -46,7 +46,7 @@ public class GeminiAIController {
         if (form.isIndyvidual()) question += ", lubi indywidualne aktywności";
         else question += ", lubi grupowe aktywności";
         if (form.isSpontanic()) question += ", lubi spontaniczne aktywnośi";
-        else question += ", lubi planowane aktywnosci";
+        else question += ", lubi planowane aktywności";
         if (form.isFreshAirActivities()) question += ", lubi aktywności na świerzym powietrzu";
         else question += ", nie lubi aktywności na świerzym powietrzu";
         if (form.isCreative()) question += ", lubi aktywności wymagające kreatywności";
@@ -54,7 +54,7 @@ public class GeminiAIController {
         if (form.isManualActivities()) question += ", lubi aktywności manualne";
         else question += ", nie lubi aktywności manualnych";
         if (form.isLikesScience()) question += ", lubi naukę";
-        else question += ", nie lubi naucych";
+        else question += ", nie lubi nauki";
         if (form.isLikeHistory()) question += ", lubi historię";
         else question += ", nie lubi historii";
         if (form.isLikesNature()) question += ", lubi obcować z naturą";
