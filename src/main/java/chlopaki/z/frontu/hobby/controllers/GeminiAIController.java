@@ -62,8 +62,6 @@ public class GeminiAIController {
 
         question += ".";
 
-        List<Hobby> hobbies = geminiService.generateContent(question);
-
-        return hobbies;
+        return geminiService.generateContent(question);
     }
 }

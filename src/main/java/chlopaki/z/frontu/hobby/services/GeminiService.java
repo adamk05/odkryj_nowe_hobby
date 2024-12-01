@@ -25,7 +25,7 @@ import java.util.Map;
 @Service
 public class GeminiService {
 
-    private String categories[] = {
+    private final String[] categories = {
             "Sporty wytrzymalosciowe",
             "Turystyka",
             "Kajakarstwo",
@@ -98,6 +98,7 @@ public class GeminiService {
 
             JSONObject hobbyObject = jsonArray.getJSONObject(i);
 
+            // Tworzenie obiektów Hobby
             if (hobbyObject.has("hobby1") && hobbyObject.has("opis hobby1") && hobbyObject.has("kategoria hobby1")) {
                 hobbies.add(new Hobby(hobbyObject.getString("hobby1"), hobbyObject.getString("opis hobby1"), hobbyObject.getString("kategoria hobby1")));
             }
@@ -115,7 +116,7 @@ public class GeminiService {
     }
 
     /**
-     * Wysyłanie zapytania do Gemini
+     * Wysyłanie zapytania do Gemini i parsuje je do obiektu JSONArray
      * @param prompt Początek zapytania
      * @return zwraca obiekt JSONArray
      * @throws JsonProcessingException rzuca wyjątek przy błędnym parsowaniu na JSON
@@ -168,8 +169,6 @@ public class GeminiService {
         cleanedJson = cleanedJson.replaceFirst("\\n```$", "");
 
         // Parsowanie na JSON
-        JSONArray jsonArray = new JSONArray(cleanedJson);
-
-        return jsonArray;
+        return new JSONArray(cleanedJson);
     }
 }
