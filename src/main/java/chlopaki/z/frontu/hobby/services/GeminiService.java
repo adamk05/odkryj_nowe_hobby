@@ -23,7 +23,7 @@ import java.util.Map;
  * Serwis odpowiadający za komunikację z API Gemini
  */
 @Service
-public class GeminiService {
+public class GeminiService implements AIService {
 
     private final String[] categories = {
             "Sporty wytrzymalosciowe",
@@ -91,7 +91,7 @@ public class GeminiService {
 
         List<Hobby> hobbies = new ArrayList<Hobby>();
 
-        JSONArray jsonArray = askGemini(prompt);
+        JSONArray jsonArray = askAI(prompt);
 
         // Pozyskiwanie obiektów Hobby z odpowiedzi
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -121,7 +121,7 @@ public class GeminiService {
      * @return zwraca obiekt JSONArray
      * @throws JsonProcessingException rzuca wyjątek przy błędnym parsowaniu na JSON
      */
-    private JSONArray askGemini(String prompt) throws JsonProcessingException {
+    private JSONArray askAI(String prompt) throws JsonProcessingException {
         final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
