@@ -23,9 +23,9 @@ import java.util.Map;
  * Serwis odpowiadający za komunikację z API Gemini
  */
 @Service
-public class GeminiService {
+public class GeminiService implements AIService {
 
-    private String categories[] = {
+    private final String[] categories = {
             "Sporty wytrzymalosciowe",
             "Turystyka",
             "Kajakarstwo",
@@ -91,13 +91,14 @@ public class GeminiService {
 
         List<Hobby> hobbies = new ArrayList<Hobby>();
 
-        JSONArray jsonArray = askGemini(prompt);
+        JSONArray jsonArray = askAI(prompt);
 
         // Pozyskiwanie obiektów Hobby z odpowiedzi
         for (int i = 0; i < jsonArray.length(); i++) {
 
             JSONObject hobbyObject = jsonArray.getJSONObject(i);
 
+            // Tworzenie obiektów Hobby
             if (hobbyObject.has("hobby1") && hobbyObject.has("opis hobby1") && hobbyObject.has("kategoria hobby1")) {
                 hobbies.add(new Hobby(hobbyObject.getString("hobby1"), hobbyObject.getString("opis hobby1"), hobbyObject.getString("kategoria hobby1")));
             }
@@ -115,12 +116,12 @@ public class GeminiService {
     }
 
     /**
-     * Wysyłanie zapytania do Gemini
+     * Wysyłanie zapytania do Gemini i parsuje je do obiektu JSONArray
      * @param prompt Początek zapytania
      * @return zwraca obiekt JSONArray
      * @throws JsonProcessingException rzuca wyjątek przy błędnym parsowaniu na JSON
      */
-    private JSONArray askGemini(String prompt) throws JsonProcessingException {
+    private JSONArray askAI(String prompt) throws JsonProcessingException {
         final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -168,8 +169,6 @@ public class GeminiService {
         cleanedJson = cleanedJson.replaceFirst("\\n```$", "");
 
         // Parsowanie na JSON
-        JSONArray jsonArray = new JSONArray(cleanedJson);
-
-        return jsonArray;
+        return new JSONArray(cleanedJson);
     }
 }

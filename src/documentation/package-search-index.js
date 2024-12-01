@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"chlopaki.z.frontu.hobby"},{"l":"chlopaki.z.frontu.hobby.controllers"},{"l":"chlopaki.z.frontu.hobby.domain"},{"l":"chlopaki.z.frontu.hobby.services"}];updateSearchResults();
