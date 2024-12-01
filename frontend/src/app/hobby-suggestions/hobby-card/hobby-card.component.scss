@@ -42,3 +42,6 @@
 .btn-primary:hover {
     background: var(--button-hover-bg);
 }
+.btn-primary:focus {
+    outline: 3px solid var(--focus-color-secondary);
+}

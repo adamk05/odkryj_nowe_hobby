@@ -13,7 +13,8 @@ export class HobbyCardComponent {
   hobby!: Hobby;
   @Input()
   imageSrc!: string;
-  imageAlt = "wwewewe"
+  @Input()
+  imageAlt!: string;
 
   @Output() onButtonClick= new EventEmitter<void>();
 

@@ -17,3 +17,7 @@
     color: var(--card-font);
     scrollbar-color: #484d64 var(--card-bg);
 }
+
+:host::ng-deep .p-dialog-content:focus {
+    outline: 3px solid var(--focus-color-secondary)
+}

@@ -16,11 +16,7 @@ export class HobbySuggestionsComponent implements OnInit{
   isDialogVisible: boolean = false;
   selectedHobbyIndex: number | undefined = undefined;
   hobbies: Hobby[] = []
-  imageAlts: string[] = [
-    "Obraz 1",
-    "Obraz 2",
-    "Obraz 3",
-  ]
+  imageAlts: string[] = []
 
   constructor(private hobbyService: HobbyService) { }
 
@@ -29,6 +25,7 @@ export class HobbySuggestionsComponent implements OnInit{
       next: (value) => {
         this.hobbies = value!;
         this.hobbies.forEach((hobby) => {
+          this.imageAlts.push(hobby.category!)
           hobby.category = hobby.category?.replaceAll(' ', '_').toLowerCase();
         });
         console.log(this.hobbies);

@@ -1,7 +1,7 @@
 <div class="wrapper vh-100">
     <div class="navbar">
         <span class="title">ODKRYJ SWOJE HOBBY</span>
-        <div class="theme" (click)="switchTheme()">
+        <div class="theme rounded-1 p-1"  (click)="switchTheme()" (keydown.enter)="switchTheme()" tabindex="0">
             <div [class]="isDarkThemeEnabled() ? 'not-enabled' : ''">
                 <span>Jasny </span>
                 <fa-icon [icon]="faSun"></fa-icon>

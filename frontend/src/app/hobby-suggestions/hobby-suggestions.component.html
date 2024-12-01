@@ -4,6 +4,7 @@
             <app-hobby-card 
                 [hobby]="hobbies[0]" 
                 [imageSrc]="'../../assets/' +  hobbies[0].category + '.jpg'"
+                [imageAlt]="imageAlts[0]"
                 (onButtonClick)="onCardButtonClick(0)"
             ></app-hobby-card>
         </div>
@@ -11,6 +12,7 @@
             <app-hobby-card 
                 [hobby]="hobbies[1]" 
                 [imageSrc]="'../../assets/' +  hobbies[1].category + '.jpg'"
+                [imageAlt]="imageAlts[1]"
                 (onButtonClick)="onCardButtonClick(1)"
             ></app-hobby-card>
         </div>
@@ -18,6 +20,7 @@
             <app-hobby-card 
                 [hobby]="hobbies[2]"
                 [imageSrc]="'../../assets/' +  hobbies[2].category + '.jpg'"
+                [imageAlt]="imageAlts[2]"
                 (onButtonClick)="onCardButtonClick(2)"
             ></app-hobby-card>
         </div>
@@ -25,6 +28,7 @@
     <p-dialog 
         header="Dodatkowe informacje" 
         [modal]="true"
+        [closeOnEscape]="true"
         [(visible)]="isDialogVisible" 
         (onHide)="isDialogVisible = false; selectedHobbyIndex = undefined"
         class="dialog"
