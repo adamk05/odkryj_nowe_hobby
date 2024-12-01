@@ -6,11 +6,14 @@ import { HobbyForm } from '../hobby-form.model';
 import { HobbyService } from '../hobby.service';
 import { fadeAnimation } from '../animations';
 import { Router } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-hobby-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ToastModule],
+  providers: [MessageService],
   animations: [fadeAnimation],
   templateUrl: './hobby-form.component.html',
   styleUrl: './hobby-form.component.scss'
@@ -21,7 +24,7 @@ export class HobbyFormComponent {
   step: number = -1;
   loading = false;
 
-  constructor(private hobbyService: HobbyService, private router: Router) { }
+  constructor(private hobbyService: HobbyService, private router: Router, private messageService: MessageService) { }
 
   handleStart(): void {
     if(this.step === -1) {
@@ -39,7 +42,7 @@ export class HobbyFormComponent {
         this.router.navigate(['/suggestions']);
       }, error: () => {
         this.step = -1;
-        alert('Wystąpił błąd, spróbuj ponownie');
+        this.messageService.add({ severity: 'error', summary: 'Wystąpił błąd', detail: 'Spróbuj ponownie' });
         this.loading = false;
       }
     });
