@@ -37,6 +37,10 @@ export class HobbyFormComponent {
         this.hobbyService.changeHobbies(value);
         this.loading = false;
         this.router.navigate(['/suggestions']);
+      }, error: () => {
+        this.step = -1;
+        alert('Wystąpił błąd, spróbuj ponownie');
+        this.loading = false;
       }
     });
   }

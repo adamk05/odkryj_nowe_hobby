@@ -44,8 +44,11 @@ public class GeminiService {
             "Aktywnosci kreatywne",
             "Aktywnosci naukowe",
             "Projektowanie",
-            "Aktywnosci przyrodnicze",
-            "Rekonstrukcje historyczne"
+            "Przyrodnicze",
+            "Rekonstrukcje historyczne",
+            "Programownie",
+            "Gry komputerowe",
+            "Wspinaczka"
     };
 
     /**
