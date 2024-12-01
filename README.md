@@ -2,7 +2,7 @@
 
 ## Wymagania do uruchomienia projektu
 
-1. JDK Java 17
+1. Java JDK 17
 2. Node 18.19.0
 
 ### 1. Serwer
