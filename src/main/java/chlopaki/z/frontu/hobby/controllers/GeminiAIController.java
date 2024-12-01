@@ -42,16 +42,23 @@ public class GeminiAIController {
 
         question += " ma " + form.getTime() + " godzin wolnego czasu w tygodniu";
         if (form.isRiskyActivities()) question += ", lubi ryzykowne aktywności";
+        else question += ", nie lubi ryzykownych aktywności";
         if (form.isIndyvidual()) question += ", lubi indywidualne aktywności";
         else question += ", lubi grupowe aktywności";
         if (form.isSpontanic()) question += ", lubi spontaniczne aktywnośi";
         else question += ", lubi planowane aktywnosci";
         if (form.isFreshAirActivities()) question += ", lubi aktywności na świerzym powietrzu";
+        else question += ", nie lubi aktywności na świerzym powietrzu";
         if (form.isCreative()) question += ", lubi aktywności wymagające kreatywności";
+        else question += ", nie lubi aktywności wymagających kreatywności";
         if (form.isManualActivities()) question += ", lubi aktywności manualne";
+        else question += ", nie lubi aktywności manualnych";
         if (form.isLikesScience()) question += ", lubi naukę";
+        else question += ", nie lubi naucych";
         if (form.isLikeHistory()) question += ", lubi historię";
+        else question += ", nie lubi historii";
         if (form.isLikesNature()) question += ", lubi obcować z naturą";
+        else question += ", nie lubi obcowania z naturą";
 
         question += ".";
 
