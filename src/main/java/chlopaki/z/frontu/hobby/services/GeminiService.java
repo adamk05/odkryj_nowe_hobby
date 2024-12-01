@@ -26,14 +26,11 @@ import java.util.Map;
 public class GeminiService {
 
     private String categories[] = {
-            "Sporty ekstremalne",
-            "Sporty wodne",
             "Sporty silowe",
-            "Aktywnosci na swiezym powietrzu",
             "Sporty wytrzymalosciowe",
             "Turystyka",
-            "Aktywnosc fizyczna",
-            "Sporty zespolowe",
+            "Kajakarstwo",
+            "Turystyka gorska",
             "Wedkarstwo",
             "Sporty zimowe",
             "Sporty motorowe",
@@ -44,7 +41,6 @@ public class GeminiService {
             "Modelarstwo",
             "Sztuka i rzemioslo",
             "Sporty walki",
-            "Sporty indywidualne",
             "Aktywnosci kreatywne",
             "Aktywnosci naukowe",
             "Projektowanie",

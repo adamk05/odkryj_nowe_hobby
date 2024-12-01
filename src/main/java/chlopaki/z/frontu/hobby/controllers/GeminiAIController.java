@@ -34,7 +34,7 @@ public class GeminiAIController {
      */
     @PostMapping("/recommendations")
     public List<Hobby> generate(@RequestBody Form form) throws JsonProcessingException {
-        String question = "Zaproponuj 3 hobby dla aktywnej osoby w postaci tylko JSON (daj tylko JSON) tak jak tu, dopasuj każde hobby do jednej z kategorii (nie używaj polskich znaków w nazwach kategorii): ";
+        String question = "Zaproponuj 3 hobby dla aktywnej osoby w postaci tylko JSON (daj tylko JSON) tak jak tu, dopasuj każde hobby do jednej z kategorii nie używaj polskich znaków w nazwach kategorii, ale używaj w nazwach hobby oraz opisach: ";
 
         question = geminiService.completeQuestion(question);
 
